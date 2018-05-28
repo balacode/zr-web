@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 3C3C88                               [zr-web/html.go]
+// :v: 2018-05-28 03:56:03 701D43                               [zr-web/html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -590,12 +590,16 @@ func Container(elementName string, content ...interface{}) *Buffer {
 		case []byte:
 			wb(val)
 		case *[]byte:
-			wb(*val)
+			if val != nil {
+				wb(*val)
+			}
 		// web.Buffer
 		case Buffer:
 			w(&val)
 		case *Buffer:
-			w(val)
+			if val != nil {
+				w(val)
+			}
 		case []Buffer:
 			for _, val := range val {
 				w(&val)
@@ -608,7 +612,9 @@ func Container(elementName string, content ...interface{}) *Buffer {
 		case bytes.Buffer:
 			wb(val.Bytes())
 		case *bytes.Buffer:
-			wb(val.Bytes())
+			if val != nil {
+				wb(val.Bytes())
+			}
 		// numbers
 		case float32, float64:
 			ws(fmt.Sprintf("%f", val))

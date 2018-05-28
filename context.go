@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-25 15:05:13 D28A30                            [zr-web/context.go]
+// :v: 2018-05-28 03:56:03 EBFF7E                            [zr-web/context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -293,7 +293,7 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 // DebugString __
 func (ob *Context) DebugString() string {
 	var postdata = string(ob.PostData())
-	return 	fmt.Sprint(
+	return fmt.Sprint(
 		"BaseReferer(): ", ob.BaseReferer(), "\n",
 		"Method(): ", ob.Method(), "\n",
 		"HREF(): ", ob.HREF(), "\n",
