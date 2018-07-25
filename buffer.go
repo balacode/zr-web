@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 22ECB3                             zr-web/[buffer.go]
+// :v: 2018-07-25 14:11:15 703EF2                             zr-web/[buffer.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -10,14 +10,14 @@ package web
 //   Embed(html string) Buffer
 //   NewBuffer(size int) Buffer
 //
-// # Methods
-//   (ob *Buffer) Bytes() []byte
-//   (ob *Buffer) Len() int
-//   (ob *Buffer) Reset()
-//   (ob *Buffer) String() string
-//   (ob *Buffer) Write(html ...*Buffer)
-//   (ob *Buffer) WriteBytes(arrays ...[]byte)
-//   (ob *Buffer) WriteString(strings ...string)
+// # Methods (ob *Buffer)
+//   ) Bytes() []byte
+//   ) Len() int
+//   ) Reset()
+//   ) String() string
+//   ) Write(html ...*Buffer)
+//   ) WriteBytes(arrays ...[]byte)
+//   ) WriteString(strings ...string)
 
 import (
 	"bytes"
@@ -51,7 +51,7 @@ func NewBuffer(size int) Buffer {
 } //                                                                   NewBuffer
 
 // -----------------------------------------------------------------------------
-// # Methods
+// # Methods (ob *Buffer)
 
 // Bytes returns the contents of the buffer as an array of bytes.
 func (ob *Buffer) Bytes() []byte {
