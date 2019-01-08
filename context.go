@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-28 03:56:03 B78B73                            zr-web/[context.go]
+// :v: 2019-01-05 12:45:51 D76174                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -24,8 +24,8 @@ package web
 	}
 
 	func mainServe(w http.ResponseWriter, req *http.Request) {
-		var context = web.NewContext(w, req, &ob.Sessions)
-		context.Reply("<html><h1>Hello World</hq></html>", "html")
+		var ctx = web.NewContext(w, req, &ob.Sessions)
+		ctx.Reply("<html><h1>Hello World</hq></html>", "html")
 	}
 */
 
