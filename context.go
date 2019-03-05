@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-01-05 12:45:51 D76174                            zr-web/[context.go]
+// :v: 2019-03-05 11:49:54 2EC1DD                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -15,7 +15,7 @@ package web
 	import (
 		"net/http"
 		"log"
-		"github.com/balacode/zr-web"
+		web "github.com/balacode/zr-web"
 	)
 
 	func main() {
