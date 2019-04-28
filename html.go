@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-07-11 10:45:59 A46878                               zr-web/[html.go]
+// :v: 2019-04-28 18:02:54 9708AA                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -83,7 +83,7 @@ import (
 	"bytes"
 	"fmt"
 	"reflect"
-	str "strings"
+	"strings"
 
 	"github.com/balacode/zr"
 )
@@ -123,7 +123,7 @@ func SetUseNthChild(val bool) {
 func SetClass(add bool, input string, classes ...string) string {
 	var classList []string
 	if input != "" {
-		classList = str.Split(input, " ")
+		classList = strings.Split(input, " ")
 	}
 	for _, class := range classes {
 		if add {
@@ -146,7 +146,7 @@ func SetClass(add bool, input string, classes ...string) string {
 			}
 		}
 	}
-	return str.Join(classList, " ")
+	return strings.Join(classList, " ")
 } //                                                                    SetClass
 
 // -----------------------------------------------------------------------------
@@ -410,7 +410,7 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 	ws("<div>" + LB)
 	for i, col := range cols {
 		ws("<p")
-		var hasClass = str.Contains(col, "class::") || class != ""
+		var hasClass = strings.Contains(col, "class::") || class != ""
 		if !useNthChild || hasClass {
 			ws(` class="`)
 			if class != "" {
@@ -424,7 +424,7 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 			}
 			if hasClass {
 				var part = zr.GetPart(col, "class::", ";")
-				col = str.Replace(col, "class::"+part+";", "", -1)
+				col = strings.Replace(col, "class::"+part+";", "", -1)
 			}
 			ws(`"`)
 		}
@@ -448,7 +448,7 @@ func CSS(styles ...string) *Buffer {
 	var retBuf Buffer
 	var ws = retBuf.WriteString
 	for _, style := range styles {
-		style = str.Trim(style, zr.SPACES)
+		style = strings.Trim(style, zr.SPACES)
 		if style == "" {
 			continue
 		}
@@ -478,7 +478,7 @@ func JS(scripts ...string) *Buffer {
 	var retBuf Buffer
 	var ws = retBuf.WriteString
 	for _, js := range scripts {
-		js = str.Trim(js, zr.SPACES)
+		js = strings.Trim(js, zr.SPACES)
 		if js == "" {
 			continue
 		}
@@ -499,7 +499,7 @@ func JS(scripts ...string) *Buffer {
 //             media name rel rev shape target type
 func NAV(href string, content ...interface{}) *Buffer {
 	//TODO: prevent multiple href attributes
-	var isFuncCall = str.Contains(href, "(") && str.Contains(href, ")")
+	var isFuncCall = strings.Contains(href, "(") && strings.Contains(href, ")")
 	if !isFuncCall {
 		href = fmt.Sprintf("zr.go('%s')", href)
 	}

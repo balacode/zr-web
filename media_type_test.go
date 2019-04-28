@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 2A2D6C                    zr-web/[media_type_test.go]
+// :v: 2019-04-28 18:02:54 609E69                    zr-web/[media_type_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -47,9 +47,9 @@ func Test_mime_MediaType_(t *testing.T) {
 	// MediaType_(name string) string
 	//
 	/*
-		name = Trim(str.ToLower(name), zr.SPACES)
-		if i := str.LastIndex(name, "."); i != -1 {
-			name = str.ToLower(name[i+1:])
+		name = Trim(strings.ToLower(name), zr.SPACES)
+		if i := strings.LastIndex(name, "."); i != -1 {
+			name = strings.ToLower(name[i+1:])
 		}
 		for _, iter := range MediaTypes {
 			if name == iter.ext || name == iter.mimeType {

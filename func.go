@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 5744EB                               zr-web/[func.go]
+// :v: 2019-04-28 18:02:54 404068                               zr-web/[func.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -14,7 +14,7 @@ package web
 import (
 	"bytes"
 	"net/http"
-	str "strings"
+	"strings"
 
 	"github.com/balacode/zr"
 )
@@ -24,7 +24,7 @@ import (
 
 // BaseReferer __
 func BaseReferer(req *http.Request) string {
-	return str.Trim(req.Referer(), zr.SPACES+`/\#-0123456789`)
+	return strings.Trim(req.Referer(), zr.SPACES+`/\#-0123456789`)
 } //                                                                 BaseReferer
 
 // -----------------------------------------------------------------------------

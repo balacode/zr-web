@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 3496E8                            zr-web/[session.go]
+// :v: 2019-04-28 18:02:54 F5FF61                            zr-web/[session.go]
 // -----------------------------------------------------------------------------
 
 package web
 
 import (
 	"net/http"
-	str "strings"
+	"strings"
 	"sync"
 
 	"github.com/balacode/zr"
@@ -39,7 +39,7 @@ func (ob *Sessions) GetByCookie(
 		id = cookie.Value
 	} else {
 		// ..if not, create new session ID and save it in a cookie
-		id = str.Replace(zr.UUID(), "-", "", -1)
+		id = strings.Replace(zr.UUID(), "-", "", -1)
 		http.SetCookie(w, &http.Cookie{Name: CookieName, Value: id})
 	}
 	// if session is already stored, return pointer to stored session

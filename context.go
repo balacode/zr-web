@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-03-05 11:49:54 2EC1DD                            zr-web/[context.go]
+// :v: 2019-04-28 18:02:54 44A47A                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -56,7 +56,7 @@ import (
 	"fmt"
 	"hash/crc32"
 	"net/http"
-	str "strings"
+	"strings"
 	"sync"
 
 	"github.com/balacode/zr"
@@ -145,9 +145,9 @@ func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 			} else {
 				postdata = zr.DebugString(data)
 			}
-			postdata = str.Trim(postdata, zr.SPACES)
-			postdata = "postdata:" + LE + str.Repeat("-", 79) + ">" + LE +
-				postdata + LE + "<" + str.Repeat("-", 79) + LE
+			postdata = strings.Trim(postdata, zr.SPACES)
+			postdata = "postdata:" + LE + strings.Repeat("-", 79) + ">" + LE +
+				postdata + LE + "<" + strings.Repeat("-", 79) + LE
 		}
 	}
 	var referer string
@@ -175,7 +175,7 @@ func (ob *Context) BaseReferer() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = str.TrimRight(ob.Referer(), SPACES+`/\#-0123456789`)
+	var ret = strings.TrimRight(ob.Referer(), SPACES+`/\#-0123456789`)
 	return ret
 } //                                                                 BaseReferer
 
@@ -185,7 +185,7 @@ func (ob *Context) Method() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	return str.ToUpper(ob.req.Method)
+	return strings.ToUpper(ob.req.Method)
 } //                                                                      Method
 
 // HREF property returns the URL path of the current request.
@@ -194,9 +194,9 @@ func (ob *Context) HREF() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = str.Trim(ob.req.URL.Path, `#/\ `)
-	if str.Contains(ret, "\\") {
-		ret = str.Replace(ret, "\\", "/", -1)
+	var ret = strings.Trim(ob.req.URL.Path, `#/\ `)
+	if strings.Contains(ret, "\\") {
+		ret = strings.Replace(ret, "\\", "/", -1)
 	}
 	return ret
 } //                                                                        HREF
@@ -220,9 +220,9 @@ func (ob *Context) Referer() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = str.Trim(ob.req.Referer(), `#/\ `)
-	if str.Contains(ret, "\\") {
-		ret = str.Replace(ret, "\\", "/", -1)
+	var ret = strings.Trim(ob.req.Referer(), `#/\ `)
+	if strings.Contains(ret, "\\") {
+		ret = strings.Replace(ret, "\\", "/", -1)
 	}
 	return ret
 } //                                                                     Referer
@@ -269,9 +269,9 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 					sdata = sdata[:40]
 				}
 			}
-			sdata = str.Trim(sdata, zr.SPACES)
-			sdata = str.Repeat("-", 80) + ">" + LE +
-				sdata + LE + "<" + str.Repeat("-", 80) + LE
+			sdata = strings.Trim(sdata, zr.SPACES)
+			sdata = strings.Repeat("-", 80) + ">" + LE +
+				sdata + LE + "<" + strings.Repeat("-", 80) + LE
 		}
 		contextDebugPrint(
 			"REPLY:", ob.id,
