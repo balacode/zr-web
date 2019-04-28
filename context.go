@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:02:54 44A47A                            zr-web/[context.go]
+// :v: 2019-04-28 18:07:08 C6CC3F                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -24,7 +24,7 @@ package web
 	}
 
 	func mainServe(w http.ResponseWriter, req *http.Request) {
-		var ctx = web.NewContext(w, req, &ob.Sessions)
+		ctx := web.NewContext(w, req, &ob.Sessions)
 		ctx.Reply("<html><h1>Hello World</hq></html>", "html")
 	}
 */
@@ -121,7 +121,7 @@ type Context struct {
 func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 ) Context {
 	nextContextID++
-	var ret = Context{
+	ret := Context{
 		id:  nextContextID,
 		req: req,
 		w:   w,
@@ -138,7 +138,7 @@ func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 	const LE = " \n"         // line end
 	var postdata string
 	{
-		var data = ret.PostData()
+		data := ret.PostData()
 		if len(data) > 0 {
 			if zr.DebugMode() {
 				postdata = string(data)
@@ -175,7 +175,7 @@ func (ob *Context) BaseReferer() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = strings.TrimRight(ob.Referer(), SPACES+`/\#-0123456789`)
+	ret := strings.TrimRight(ob.Referer(), SPACES+`/\#-0123456789`)
 	return ret
 } //                                                                 BaseReferer
 
@@ -194,7 +194,7 @@ func (ob *Context) HREF() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = strings.Trim(ob.req.URL.Path, `#/\ `)
+	ret := strings.Trim(ob.req.URL.Path, `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.Replace(ret, "\\", "/", -1)
 	}
@@ -220,7 +220,7 @@ func (ob *Context) Referer() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	var ret = strings.Trim(ob.req.Referer(), `#/\ `)
+	ret := strings.Trim(ob.req.Referer(), `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.Replace(ret, "\\", "/", -1)
 	}
@@ -252,7 +252,7 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 	if ContextDebugFunc != nil {
 		const LE = " " + zr.LF           // line end
 		defer contextDebugMutex.Unlock() // locked by NewContext()
-		var crc = fmt.Sprintf("%08X", crc32.ChecksumIEEE(data))
+		crc := fmt.Sprintf("%08X", crc32.ChecksumIEEE(data))
 		var sdata string
 		if len(data) > 0 &&
 			mediaType != "application/javascript" &&
@@ -292,7 +292,7 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 
 // DebugString __
 func (ob *Context) DebugString() string {
-	var postdata = string(ob.PostData())
+	postdata := string(ob.PostData())
 	return fmt.Sprint(
 		"BaseReferer(): ", ob.BaseReferer(), "\n",
 		"Method(): ", ob.Method(), "\n",
@@ -311,11 +311,11 @@ func (ob *Context) DebugString() string {
 func readPostData(req *http.Request) []byte {
 	var ret []byte
 	{
-		var buf = bytes.NewBuffer(make([]byte, 0, 1024))
+		buf := bytes.NewBuffer(make([]byte, 0, 1024))
 		req.Write(buf)
 		ret = buf.Bytes()
 	}
-	var pos = bytes.Index(ret, []byte("\r\n\r\n")) // skip HTTP headers
+	pos := bytes.Index(ret, []byte("\r\n\r\n")) // skip HTTP headers
 	if pos != -1 {
 		ret = ret[pos+4:]
 	}

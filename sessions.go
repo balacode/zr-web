@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:02:54 F5FF61                            zr-web/[session.go]
+// :v: 2019-04-28 18:07:08 B3E7DB                            zr-web/[session.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -34,7 +34,7 @@ func (ob *Sessions) GetByCookie(
 	const CookieName = "app_session_id"
 	// if session cookie already exists, use its session ID..
 	var id string
-	var cookie, err = req.Cookie(CookieName)
+	cookie, err := req.Cookie(CookieName)
 	if err == nil {
 		id = cookie.Value
 	} else {
@@ -43,12 +43,12 @@ func (ob *Sessions) GetByCookie(
 		http.SetCookie(w, &http.Cookie{Name: CookieName, Value: id})
 	}
 	// if session is already stored, return pointer to stored session
-	var ptr, exists = ob.m[id]
+	ptr, exists := ob.m[id]
 	if exists {
 		return ptr
 	}
 	// if not, add a new Session to the map
-	var ses = Session{id: id, m: map[string]string{}}
+	ses := Session{id: id, m: map[string]string{}}
 	ptr = &ses
 	if ob.m == nil {
 		ob.m = make(map[string]*Session, 0)

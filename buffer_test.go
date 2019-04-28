@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 11BBC0                        zr-web/[buffer_test.go]
+// :v: 2019-04-28 18:07:08 CC92AF                        zr-web/[buffer_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -43,11 +43,11 @@ func Test_buff_Embed_(t *testing.T) {
 	// Embed_(html string) Buffer
 	//
 	{
-		var buf = Embed("")
+		buf := Embed("")
 		zr.TEqual(t, buf.String(), "")
 	}
 	{
-		var buf = Embed("ABC")
+		buf := Embed("ABC")
 		zr.TEqual(t, buf.String(), "ABC")
 	}
 } //                                                     Test_buff_Buffer_Embed_

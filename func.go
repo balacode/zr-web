@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:02:54 404068                               zr-web/[func.go]
+// :v: 2019-04-28 18:07:08 64A48D                               zr-web/[func.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -33,12 +33,12 @@ func BaseReferer(req *http.Request) string {
 // CompactCSS removes all comments, empty
 // lines and indentation from CSS bytes.
 func CompactCSS(css []byte) []byte {
-	var ret = make([]byte, 0, len(css))
+	ret := make([]byte, 0, len(css))
 	for {
 		// find position of nearest single-line or multi-line comment
-		var c1 = bytes.Index(css, []byte{'/', '/'})
-		var c2 = bytes.Index(css, []byte{'/', '*'})
-		var i = c1
+		c1 := bytes.Index(css, []byte{'/', '/'})
+		c2 := bytes.Index(css, []byte{'/', '*'})
+		i := c1
 		if (c2 > -1 && c2 < c1) || c1 == -1 {
 			i = c2
 			c1 = -1
@@ -54,14 +54,14 @@ func CompactCSS(css []byte) []byte {
 		css = css[i+2:]
 		// skip comment body
 		if c1 > -1 {
-			var c = bytes.IndexByte(css, '\n')
+			c := bytes.IndexByte(css, '\n')
 			if c == -1 {
 				break
 			}
 			css = css[c+1:]
 		}
 		if c2 > -1 {
-			var c = bytes.Index(css, []byte{'*', '/'})
+			c := bytes.Index(css, []byte{'*', '/'})
 			if c == -1 {
 				break
 			}
@@ -69,12 +69,14 @@ func CompactCSS(css []byte) []byte {
 		}
 	}
 	// change tabs to spaces and remove repeated spaces and line feeds:
-	var lf = []byte{'\n'}
-	var lf2 = []byte{'\n', '\n'}
-	var lfSpc = []byte{'\n', ' '}
-	var spc = []byte{' '}
-	var spc2 = []byte{' ', ' '}
-	var tab = []byte{'\t'}
+	var (
+		lf    = []byte{'\n'}
+		lf2   = []byte{'\n', '\n'}
+		lfSpc = []byte{'\n', ' '}
+		spc   = []byte{' '}
+		spc2  = []byte{' ', ' '}
+		tab   = []byte{'\t'}
+	)
 	for bytes.Contains(ret, tab) {
 		ret = bytes.Replace(ret, tab, spc, -1)
 	}

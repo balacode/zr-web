@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:02:54 9708AA                               zr-web/[html.go]
+// :v: 2019-04-28 18:07:08 8757E1                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -156,7 +156,7 @@ func SetClass(add bool, input string, classes ...string) string {
 // container for all other HTML tags.
 // Attributes: manifest, xmlns
 func HTML(content ...interface{}) []byte {
-	var retBuf = NewBuffer(4096)
+	retBuf := NewBuffer(4096)
 	retBuf.WriteString("<!DOCTYPE html>" + LB)
 	retBuf.Write(Container("html", content...))
 	return retBuf.Bytes()
@@ -406,11 +406,11 @@ func Type(locale string) Attribute {
 // using CSS and <p> tags, without the need to use HTML tables.
 func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 	var retBuf Buffer
-	var ws = retBuf.WriteString
+	ws := retBuf.WriteString
 	ws("<div>" + LB)
 	for i, col := range cols {
 		ws("<p")
-		var hasClass = strings.Contains(col, "class::") || class != ""
+		hasClass := strings.Contains(col, "class::") || class != ""
 		if !useNthChild || hasClass {
 			ws(` class="`)
 			if class != "" {
@@ -423,7 +423,7 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 				ws(fmt.Sprintf("c c%d", i+1))
 			}
 			if hasClass {
-				var part = zr.GetPart(col, "class::", ";")
+				part := zr.GetPart(col, "class::", ";")
 				col = strings.Replace(col, "class::"+part+";", "", -1)
 			}
 			ws(`"`)
@@ -446,7 +446,7 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 // Should be placed within the <head> element under <html>.
 func CSS(styles ...string) *Buffer {
 	var retBuf Buffer
-	var ws = retBuf.WriteString
+	ws := retBuf.WriteString
 	for _, style := range styles {
 		style = strings.Trim(style, zr.SPACES)
 		if style == "" {
@@ -466,7 +466,7 @@ func CSS(styles ...string) *Buffer {
 // It can be useful to merge together several HTML elements,
 // with one element listed after the other.
 func JOIN(content ...*Buffer) *Buffer {
-	var retBuf = NewBuffer(64)
+	retBuf := NewBuffer(64)
 	for _, buf := range content {
 		retBuf.Write(buf)
 	}
@@ -476,7 +476,7 @@ func JOIN(content ...*Buffer) *Buffer {
 // JS links JavaScript (.js) script files or embeds JS code snippets.
 func JS(scripts ...string) *Buffer {
 	var retBuf Buffer
-	var ws = retBuf.WriteString
+	ws := retBuf.WriteString
 	for _, js := range scripts {
 		js = strings.Trim(js, zr.SPACES)
 		if js == "" {
@@ -499,7 +499,7 @@ func JS(scripts ...string) *Buffer {
 //             media name rel rev shape target type
 func NAV(href string, content ...interface{}) *Buffer {
 	//TODO: prevent multiple href attributes
-	var isFuncCall = strings.Contains(href, "(") && strings.Contains(href, ")")
+	isFuncCall := strings.Contains(href, "(") && strings.Contains(href, ")")
 	if !isFuncCall {
 		href = fmt.Sprintf("zr.go('%s')", href)
 	}
@@ -511,7 +511,7 @@ func NAV(href string, content ...interface{}) *Buffer {
 // inject literal strings into HTML content.
 func TEXT(texts ...string) *Buffer {
 	var retBuf Buffer
-	var ws = retBuf.WriteString
+	ws := retBuf.WriteString
 	for _, s := range texts {
 		ws(s)
 	}
@@ -553,8 +553,8 @@ func Meta(attributes ...Attribute) *Buffer {
 // Comment composes an HTML comment.
 func Comment(s string) *Buffer {
 	//TODO: change 's string' to 'args ...interface{}' and use fmt.Sprint()
-	var retBuf = NewBuffer(64)
-	var ws = retBuf.WriteString
+	retBuf := NewBuffer(64)
+	ws := retBuf.WriteString
 	ws("<!--")
 	ws(s)
 	ws("-->" + LB)
@@ -563,10 +563,10 @@ func Comment(s string) *Buffer {
 
 // Container composes an arbitrary HTML container tag.
 func Container(elementName string, content ...interface{}) *Buffer {
-	var retBuf = NewBuffer(64)
-	var w = retBuf.Write
-	var wb = retBuf.WriteBytes
-	var ws = retBuf.WriteString
+	retBuf := NewBuffer(64)
+	w := retBuf.Write
+	wb := retBuf.WriteBytes
+	ws := retBuf.WriteString
 	// write the opening tag and its attributes
 	ws("<" + elementName)
 	for _, val := range content {
@@ -645,8 +645,8 @@ func Container(elementName string, content ...interface{}) *Buffer {
 
 // Element composes a HTML tag with optional attributes but no child tags.
 func Element(elementName string, attributes ...Attribute) *Buffer {
-	var retBuf = NewBuffer(64)
-	var ws = retBuf.WriteString
+	retBuf := NewBuffer(64)
+	ws := retBuf.WriteString
 	ws("<" + elementName)
 	for _, attr := range attributes {
 		ws(fmt.Sprintf(` %s="%s"`, attr.Name, attr.Value))
