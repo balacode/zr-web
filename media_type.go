@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:02:54 1A7C06                         zr-web/[media_type.go]
+// :v: 2019-05-06 06:27:36 B39B88                         zr-web/[media_type.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -16,7 +16,7 @@ import (
 
 // MediaTypes holds an array of file extensions and corresponding Internet
 // media types (MIME type i.e. Multipurpose Internet Mail Extensions)
-var MediaTypes = []struct { //TODO: use upper case
+var MediaTypes = []struct { // TODO: use upper case
 	ext      string
 	mimeType string
 }{

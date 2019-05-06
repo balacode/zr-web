@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:07:08 8757E1                               zr-web/[html.go]
+// :v: 2019-05-06 06:27:36 D13239                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -185,7 +185,7 @@ func Body(content ...interface{}) *Buffer {
 // Attributes: charset coords download href hreflang
 // media name rel rev shape target type
 func A(href string, content ...interface{}) *Buffer {
-	//TODO: prevent multiple href attributes
+	// TODO: prevent multiple href attributes
 	content = append(content, HREF(href))
 	return Container("a", content...)
 } //                                                                           A
@@ -498,7 +498,7 @@ func JS(scripts ...string) *Buffer {
 // Attributes: charset coords download href hreflang
 //             media name rel rev shape target type
 func NAV(href string, content ...interface{}) *Buffer {
-	//TODO: prevent multiple href attributes
+	// TODO: prevent multiple href attributes
 	isFuncCall := strings.Contains(href, "(") && strings.Contains(href, ")")
 	if !isFuncCall {
 		href = fmt.Sprintf("zr.go('%s')", href)
@@ -552,7 +552,7 @@ func Meta(attributes ...Attribute) *Buffer {
 
 // Comment composes an HTML comment.
 func Comment(s string) *Buffer {
-	//TODO: change 's string' to 'args ...interface{}' and use fmt.Sprint()
+	// TODO: change 's string' to 'args ...interface{}' and use fmt.Sprint()
 	retBuf := NewBuffer(64)
 	ws := retBuf.WriteString
 	ws("<!--")

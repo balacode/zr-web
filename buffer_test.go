@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:07:08 CC92AF                        zr-web/[buffer_test.go]
+// :v: 2019-05-06 06:27:36 E6BCFC                        zr-web/[buffer_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -67,7 +67,7 @@ func Test_buff_Buffer_Bytes_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) Bytes() []byte
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                     Test_buff_Buffer_Bytes_
 
 // go test --run Test_buff_Buffer_Len_
@@ -75,7 +75,7 @@ func Test_buff_Buffer_Len_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) Len() int
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                       Test_buff_Buffer_Len_
 
 // go test --run Test_buff_Buffer_Reset_
@@ -83,7 +83,7 @@ func Test_buff_Buffer_Reset_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) Reset()
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                     Test_buff_Buffer_Reset_
 
 // go test --run Test_buff_Buffer_String_
@@ -91,7 +91,7 @@ func Test_buff_Buffer_String_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) String() string
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                    Test_buff_Buffer_String_
 
 // go test --run Test_buff_Buffer_Write_
@@ -99,7 +99,7 @@ func Test_buff_Buffer_Write_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) Write(html ...*Buffer)
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                     Test_buff_Buffer_Write_
 
 // go test --run Test_buff_Buffer_WriteBytes_
@@ -107,7 +107,7 @@ func Test_buff_Buffer_WriteBytes_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) WriteBytes(arrays ...[]byte)
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                                Test_buff_Buffer_WriteBytes_
 
 // go test --run Test_buff_Buffer_WriteString_
@@ -115,7 +115,7 @@ func Test_buff_Buffer_WriteString_(t *testing.T) {
 	zr.TBegin(t)
 	// (ob *Buffer) WriteString(strings ...string)
 	//
-	//TODO: add check for nil receiver
+	// TODO: add check for nil receiver
 } //                                               Test_buff_Buffer_WriteString_
 
 //end
