@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:07:08 C6CC3F                            zr-web/[context.go]
+// :v: 2019-05-08 11:32:02 95A26A                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -145,7 +145,7 @@ func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 			} else {
 				postdata = zr.DebugString(data)
 			}
-			postdata = strings.Trim(postdata, zr.SPACES)
+			postdata = strings.TrimSpace(postdata)
 			postdata = "postdata:" + LE + strings.Repeat("-", 79) + ">" + LE +
 				postdata + LE + "<" + strings.Repeat("-", 79) + LE
 		}
@@ -269,7 +269,7 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 					sdata = sdata[:40]
 				}
 			}
-			sdata = strings.Trim(sdata, zr.SPACES)
+			sdata = strings.TrimSpace(sdata)
 			sdata = strings.Repeat("-", 80) + ">" + LE +
 				sdata + LE + "<" + strings.Repeat("-", 80) + LE
 		}

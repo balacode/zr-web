@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-06 06:27:36 D13239                               zr-web/[html.go]
+// :v: 2019-05-08 11:32:02 714BE8                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -448,7 +448,7 @@ func CSS(styles ...string) *Buffer {
 	var retBuf Buffer
 	ws := retBuf.WriteString
 	for _, style := range styles {
-		style = strings.Trim(style, zr.SPACES)
+		style = strings.TrimSpace(style)
 		if style == "" {
 			continue
 		}
@@ -478,7 +478,7 @@ func JS(scripts ...string) *Buffer {
 	var retBuf Buffer
 	ws := retBuf.WriteString
 	for _, js := range scripts {
-		js = strings.Trim(js, zr.SPACES)
+		js = strings.TrimSpace(js)
 		if js == "" {
 			continue
 		}

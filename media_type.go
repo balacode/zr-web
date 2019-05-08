@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-06 06:27:36 B39B88                         zr-web/[media_type.go]
+// :v: 2019-05-08 11:32:02 A4B314                         zr-web/[media_type.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -574,7 +574,7 @@ var MediaTypes = []struct { // TODO: use upper case
 // extension, file name or full MIME type.
 // (When given a file name, it checks the ending of the given file name)
 func MediaType(name string) string {
-	name = strings.Trim(strings.ToLower(name), zr.SPACES)
+	name = strings.TrimSpace(strings.ToLower(name))
 	if i := strings.LastIndex(name, "."); i != -1 {
 		name = strings.ToLower(name[i+1:])
 	}
