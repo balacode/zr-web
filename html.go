@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-08 11:32:02 714BE8                               zr-web/[html.go]
+// :v: 2019-05-09 17:19:39 149AED                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -157,7 +157,7 @@ func SetClass(add bool, input string, classes ...string) string {
 // Attributes: manifest, xmlns
 func HTML(content ...interface{}) []byte {
 	retBuf := NewBuffer(4096)
-	retBuf.WriteString("<!DOCTYPE html>" + LB)
+	retBuf.WriteString("<!DOCTYPE html>\r\n")
 	retBuf.Write(Container("html", content...))
 	return retBuf.Bytes()
 } //                                                                        HTML
@@ -407,7 +407,7 @@ func Type(locale string) Attribute {
 func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 	var retBuf Buffer
 	ws := retBuf.WriteString
-	ws("<div>" + LB)
+	ws("<div>\r\n")
 	for i, col := range cols {
 		ws("<p")
 		hasClass := strings.Contains(col, "class::") || class != ""
@@ -428,9 +428,9 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 			}
 			ws(`"`)
 		}
-		ws(">", col, "</p>"+LB)
+		ws(">", col, "</p>\r\n")
 	}
-	ws("</div>" + LB)
+	ws("</div>\r\n")
 	return &retBuf
 } //                                                                     COLUMNS
 
@@ -454,10 +454,10 @@ func CSS(styles ...string) *Buffer {
 		}
 		if zr.ContainsI(style, ".css") {
 			ws(`<link rel="stylesheet" type="text/css" href="` +
-				style + `">` + LB)
+				style + `">` + "\r\n")
 			continue
 		}
-		ws(`<style type="text/css">` + LB + style + LB + "</style>" + LB)
+		ws(`<style type="text/css">` + "\r\n" + style + "\r\n</style>\r\n")
 	}
 	return &retBuf
 } //                                                                         CSS
@@ -484,10 +484,10 @@ func JS(scripts ...string) *Buffer {
 		}
 		if zr.ContainsI(js, ".js") {
 			ws(`<script type="text/javascript" src="` +
-				js + `"></script>` + LB)
+				js + `"></script>` + "\r\n")
 			continue
 		}
-		ws(`<script type="text/javascript">` + js + "</script>" + LB)
+		ws(`<script type="text/javascript">` + js + "</script>\r\n")
 	}
 	return &retBuf
 } //                                                                          JS
@@ -557,7 +557,7 @@ func Comment(s string) *Buffer {
 	ws := retBuf.WriteString
 	ws("<!--")
 	ws(s)
-	ws("-->" + LB)
+	ws("-->\r\n")
 	return &retBuf
 } //                                                                     Comment
 
@@ -580,7 +580,7 @@ func Container(elementName string, content ...interface{}) *Buffer {
 	ws(">")
 	if zr.StrOneOf(elementName,
 		"article", "body", "div", "head", "header", "html", "nav", "ul") {
-		ws(LB)
+		ws("\r\n")
 	}
 	// write the inner content (usually the byte buffers of child tags)
 	for i, val := range content {
@@ -638,7 +638,7 @@ func Container(elementName string, content ...interface{}) *Buffer {
 	// write closing tag
 	ws("</" + elementName + ">")
 	if elementName != "a" {
-		ws(LB)
+		ws("\r\n")
 	}
 	return &retBuf
 } //                                                                   Container
@@ -651,7 +651,7 @@ func Element(elementName string, attributes ...Attribute) *Buffer {
 	for _, attr := range attributes {
 		ws(fmt.Sprintf(` %s="%s"`, attr.Name, attr.Value))
 	}
-	ws(">" + LB)
+	ws(">\r\n")
 	return &retBuf
 } //                                                                     Element
 

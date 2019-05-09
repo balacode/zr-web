@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 84C303                             zr-web/[module.go]
+// :v: 2019-05-09 17:19:39 A87E90                             zr-web/[module.go]
 // -----------------------------------------------------------------------------
 
 // Package web provides HTML generation functions
@@ -12,12 +12,6 @@ import (
 
 	"github.com/balacode/zr"
 )
-
-// LB specifies a line break string.
-// On Windows it is a pair of CR and LF.
-// CR is decimal 13, hex 0D.
-// LF is decimal 10, hex 0A.
-const LB = "\r\n"
 
 // SPACES is a string of all white-space characters,
 // which includes spaces, tabs, and newline characters.
