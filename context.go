@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-08 11:32:02 95A26A                            zr-web/[context.go]
+// :v: 2019-05-09 18:12:04 94EE9A                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -250,7 +250,7 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 		zr.Error(zr.EInvalidArg, "^mediaType", ":^", mediaType)
 	}
 	if ContextDebugFunc != nil {
-		const LE = " " + zr.LF           // line end
+		const LE = " \n"                 // line end
 		defer contextDebugMutex.Unlock() // locked by NewContext()
 		crc := fmt.Sprintf("%08X", crc32.ChecksumIEEE(data))
 		var sdata string
