@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:07:08 64A48D                               zr-web/[func.go]
+// :v: 2019-05-11 04:39:45 C564A0                               zr-web/[func.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -36,9 +36,11 @@ func CompactCSS(css []byte) []byte {
 	ret := make([]byte, 0, len(css))
 	for {
 		// find position of nearest single-line or multi-line comment
-		c1 := bytes.Index(css, []byte{'/', '/'})
-		c2 := bytes.Index(css, []byte{'/', '*'})
-		i := c1
+		var (
+			c1 = bytes.Index(css, []byte{'/', '/'})
+			c2 = bytes.Index(css, []byte{'/', '*'})
+			i  = c1
+		)
 		if (c2 > -1 && c2 < c1) || c1 == -1 {
 			i = c2
 			c1 = -1

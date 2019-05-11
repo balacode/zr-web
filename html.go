@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-09 17:19:39 149AED                               zr-web/[html.go]
+// :v: 2019-05-11 04:39:45 B2B56E                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -553,8 +553,10 @@ func Meta(attributes ...Attribute) *Buffer {
 // Comment composes an HTML comment.
 func Comment(s string) *Buffer {
 	// TODO: change 's string' to 'args ...interface{}' and use fmt.Sprint()
-	retBuf := NewBuffer(64)
-	ws := retBuf.WriteString
+	var (
+		retBuf = NewBuffer(64)
+		ws     = retBuf.WriteString
+	)
 	ws("<!--")
 	ws(s)
 	ws("-->\r\n")
@@ -563,10 +565,12 @@ func Comment(s string) *Buffer {
 
 // Container composes an arbitrary HTML container tag.
 func Container(elementName string, content ...interface{}) *Buffer {
-	retBuf := NewBuffer(64)
-	w := retBuf.Write
-	wb := retBuf.WriteBytes
-	ws := retBuf.WriteString
+	var (
+		retBuf = NewBuffer(64)
+		w      = retBuf.Write
+		wb     = retBuf.WriteBytes
+		ws     = retBuf.WriteString
+	)
 	// write the opening tag and its attributes
 	ws("<" + elementName)
 	for _, val := range content {
@@ -645,8 +649,10 @@ func Container(elementName string, content ...interface{}) *Buffer {
 
 // Element composes a HTML tag with optional attributes but no child tags.
 func Element(elementName string, attributes ...Attribute) *Buffer {
-	retBuf := NewBuffer(64)
-	ws := retBuf.WriteString
+	var (
+		retBuf = NewBuffer(64)
+		ws     = retBuf.WriteString
+	)
 	ws("<" + elementName)
 	for _, attr := range attributes {
 		ws(fmt.Sprintf(` %s="%s"`, attr.Name, attr.Value))
