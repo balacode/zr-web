@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-09 18:12:04 94EE9A                            zr-web/[context.go]
+// :v: 2019-05-11 16:38:49 7EBF5A                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -175,7 +175,7 @@ func (ob *Context) BaseReferer() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.TrimRight(ob.Referer(), SPACES+`/\#-0123456789`)
+	ret := strings.TrimRight(ob.Referer(), " \a\b\f\n\r\t\v"+`/\#-0123456789`)
 	return ret
 } //                                                                 BaseReferer
 
