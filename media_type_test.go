@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-11 16:38:49 F36BB8                    zr-web/[media_type_test.go]
+// :v: 2019-05-12 17:07:24 6BDF10                    zr-web/[media_type_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -8,14 +8,12 @@ package web
 // Test_mime_MediaTypes_
 // Test_mime_MediaType
 
-/*
-to test all items in media_type.go use:
-    go test --run Test_mime_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in media_type.go use:
+//      go test --run Test_mime_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-06 06:27:36 E6BCFC                        zr-web/[buffer_test.go]
+// :v: 2019-05-12 17:07:24 31951E                        zr-web/[buffer_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -18,14 +18,12 @@ package web
 //   Test_buff_Buffer_WriteBytes_
 //   Test_buff_Buffer_WriteString_
 
-/*
-to test all items in buffer.go use:
-    go test --run Test_buff_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in buffer.go use:
+//      go test --run Test_buff_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	// "bytes"

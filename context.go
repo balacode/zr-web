@@ -1,33 +1,31 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-11 16:38:49 7EBF5A                            zr-web/[context.go]
+// :v: 2019-05-12 17:07:24 63ABAD                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
 
-/*
-	Context wraps an HTTP request and reply. Its methods such as HREF(),
-	Method() and PostData() provide request details. The Reply() method
-	is used to send a reply. The most important use of Context is that
-	it connects request to sessions. It checks the cookie sent with the
-	request and starts a new session or continues an existing session.
-
-	import (
-		"net/http"
-		"log"
-		web "github.com/balacode/zr-web"
-	)
-
-	func main() {
-		http.HandleFunc("/", mainServe)
-		log.Fatal(http.ListenAndServe("localhost:888", nil))
-	}
-
-	func mainServe(w http.ResponseWriter, req *http.Request) {
-		ctx := web.NewContext(w, req, &ob.Sessions)
-		ctx.Reply("<html><h1>Hello World</hq></html>", "html")
-	}
-*/
+//	Context wraps an HTTP request and reply. Its methods such as HREF(),
+//	Method() and PostData() provide request details. The Reply() method
+//	is used to send a reply. The most important use of Context is that
+//	it connects request to sessions. It checks the cookie sent with the
+//	request and starts a new session or continues an existing session.
+//
+//	import (
+//		"net/http"
+//		"log"
+//		web "github.com/balacode/zr-web"
+//	)
+//
+//	func main() {
+//		http.HandleFunc("/", mainServe)
+//		log.Fatal(http.ListenAndServe("localhost:888", nil))
+//	}
+//
+//	func mainServe(w http.ResponseWriter, req *http.Request) {
+//		ctx := web.NewContext(w, req, &ob.Sessions)
+//		ctx.Reply("<html><h1>Hello World</hq></html>", "html")
+//	}
 
 //  Context struct
 //

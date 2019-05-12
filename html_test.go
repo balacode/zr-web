@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 F570C1                          zr-web/[html_test.go]
+// :v: 2019-05-12 17:07:24 68E54F                          zr-web/[html_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -11,14 +11,12 @@ import (
 	"github.com/balacode/zr"
 )
 
-/*
-to test all items in html.go use:
-    go test --run Test_html_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in html.go use:
+//      go test --run Test_html_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 // go test --run Test_html_SetClass_
 func Test_html_SetClass_(t *testing.T) {
