@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-11 04:39:45 B2B56E                               zr-web/[html.go]
+// :v: 2019-05-16 17:04:01 E2BEFE                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -590,16 +590,22 @@ func Container(elementName string, content ...interface{}) *Buffer {
 	for i, val := range content {
 		switch val := val.(type) {
 		case Attribute:
-			// do nothing: already handled above
+			{
+				// do nothing: already handled above
+			}
 		case []byte:
-			wb(val)
+			{
+				wb(val)
+			}
 		case *[]byte:
 			if val != nil {
 				wb(*val)
 			}
 		// web.Buffer
 		case Buffer:
-			w(&val)
+			{
+				w(&val)
+			}
 		case *Buffer:
 			if val != nil {
 				w(val)
@@ -614,26 +620,36 @@ func Container(elementName string, content ...interface{}) *Buffer {
 			}
 		// bytes.Buffer
 		case bytes.Buffer:
-			wb(val.Bytes())
+			{
+				wb(val.Bytes())
+			}
 		case *bytes.Buffer:
 			if val != nil {
 				wb(val.Bytes())
 			}
-		// numbers
-		case float32, float64:
-			ws(fmt.Sprintf("%f", val))
+			// numbers
+		case float64, float32:
+			{
+				ws(fmt.Sprintf("%f", val))
+			}
 		case int, int8, int16, int32, int64,
-			uint, uint8, uint16, uint32, uint64:
-			ws(fmt.Sprintf("%d", val))
+			uint, uint64, uint32, uint16, uint8:
+			{
+				ws(fmt.Sprintf("%d", val))
+			}
 		// strings
 		case string:
-			ws(val)
+			{
+				ws(val)
+			}
 		case []string:
 			for _, s := range val {
 				ws(s)
 			}
 		case fmt.Stringer:
-			ws(val.String())
+			{
+				ws(val.String())
+			}
 		default:
 			zr.Error("Content item", i, "of type",
 				reflect.TypeOf(val), "not handled")
