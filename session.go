@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-05-24 13:36:58 86670A                            zr-web/[session.go]
+// :v: 2019-05-17 16:30:46 A9DC96                            zr-web/[session.go]
 // -----------------------------------------------------------------------------
 
 package web
 
 //   (ob *Session) ID() string
 //   (ob *Session) GetSetting(name string) string
-//   (ob *Session) SetSetting(name string, val interface{})
+//   (ob *Session) SetSetting(name string, value interface{})
 
 import (
 	"sync"
@@ -49,13 +49,13 @@ func (ob *Session) GetSetting(name string) string {
 } //                                                                  GetSetting
 
 // SetSetting __
-func (ob *Session) SetSetting(name string, val interface{}) {
+func (ob *Session) SetSetting(name string, value interface{}) {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)
 		return
 	}
 	ob.mutex.Lock()
-	ob.m[name] = zr.String(val)
+	ob.m[name] = zr.String(value)
 	ob.mutex.Unlock()
 } //                                                                  SetSetting
 
