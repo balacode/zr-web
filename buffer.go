@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2018-07-25 14:11:15 703EF2                             zr-web/[buffer.go]
+// :v: 2019-05-19 20:36:10 6B046B                             zr-web/[buffer.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -82,7 +82,7 @@ func (ob *Buffer) Reset() {
 } //                                                                       Reset
 
 // String returns the contents of the buffer as a string
-// and implements the Stringer Interface.
+// and implements the fmt.Stringer interface.
 func (ob *Buffer) String() string {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)
