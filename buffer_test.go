@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-12 17:07:24 31951E                        zr-web/[buffer_test.go]
+// :v: 2019-05-25 22:34:16 801A9A                        zr-web/[buffer_test.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -26,7 +26,6 @@ package web
 //      go tool cover -html=cover.out
 
 import (
-	// "bytes"
 	"testing"
 
 	"github.com/balacode/zr"
