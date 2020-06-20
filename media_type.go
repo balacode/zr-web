@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-08 11:32:02 A4B314                         zr-web/[media_type.go]
+// :v: 2020-06-20 09:35:00 610048                         zr-web/[media_type.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -381,6 +381,7 @@ var MediaTypes = []struct { // TODO: use upper case
 	{"wmlc", "application/vnd.wap.wmlc"},
 	{"wmlsc", "application/vnd.wap.wmlscriptc"},
 	{"wmz", "application/x-ms-wmz"},
+	{"woff", "application/font-woff"},
 	{"wp5", "application/vnd.wordperfect5.1"},
 	{"wpd", "application/vnd.wordperfect"},
 	{"wz", "application/x-wingz"},
