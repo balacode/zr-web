@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-25 22:34:16 BF1502                            zr-web/[context.go]
+// :v: 2020-06-25 22:42:17 B8FD2D                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -40,6 +40,7 @@ package web
 //   HREF() string
 //   PostData() []byte
 //   Referer() string
+//   URI() string
 //
 // # Reply Method (ob *Context)
 //   Reply(data []byte, mediaType string)
@@ -188,6 +189,7 @@ func (ob *Context) Method() string {
 } //                                                                      Method
 
 // HREF property returns the URL path of the current request.
+// This property does not return the query parameters.
 func (ob *Context) HREF() string {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)
@@ -225,6 +227,20 @@ func (ob *Context) Referer() string {
 	}
 	return ret
 } //                                                                     Referer
+
+// URI property returns the full URI path of the current request.
+// This includes the HREF() part and any query parameters.
+func (ob *Context) URI() string {
+	if ob == nil {
+		zr.Error(zr.ENilReceiver)
+		return ""
+	}
+	ret := strings.Trim(ob.req.RequestURI, `#/\ `)
+	if strings.Contains(ret, "\\") {
+		ret = strings.Replace(ret, "\\", "/", -1)
+	}
+	return ret
+} //                                                                        URI
 
 // -----------------------------------------------------------------------------
 // # Reply Method (ob *Context)
