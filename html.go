@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 10:26:17 6AD430                               zr-web/[html.go]
+// :v: 2020-08-01 10:27:20 3739DC                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -49,7 +49,6 @@ package web
 //
 // # HTML Attributes
 //   Attr(name, val string) Attribute
-//   Charset(locale string) Attribute
 //   Class(classList ...string) Attribute
 //   Content(locale string) Attribute
 //   HREF(href string) Attribute
@@ -72,7 +71,6 @@ package web
 //   Br(attributes ...Attribute) *Buffer
 //   Hr(attributes ...Attribute) *Buffer
 //   Input(attributes ...Attribute) *Buffer
-//   Meta(attributes ...Attribute) *Buffer
 //   MetaCharset(locale string) *Buffer
 //   MetaViewport() *Buffer
 //
@@ -80,6 +78,10 @@ package web
 //   Comment(s string) *Buffer
 //   Container(elementName string, content ...interface{}) *Buffer
 //   Element(elementName string, attributes ...Attribute) *Buffer
+//
+// # DEPRECATED:
+//   Charset(locale string) Attribute /*DEPRECATED*/
+//   Meta(attributes ...Attribute) *Buffer /*DEPRECATED*/
 
 import (
 	"bytes"
@@ -335,11 +337,6 @@ func Attr(name, val string) Attribute {
 	return Attribute{Name: name, Value: val}
 } //                                                                        Attr
 
-// Charset attribute applies to <meta> tags.
-func Charset(locale string) Attribute {
-	return Attribute{Name: "charset", Value: locale}
-} //                                                                     Charset
-
 // Class represents the 'class' attribute. You can specify multiple class
 // strings in which case they will be delimited by a space. E.g.
 // Class("currency", "sum") will become class="currency sum"
@@ -543,12 +540,6 @@ func Input(attributes ...Attribute) *Buffer {
 	return Element("input", attributes...)
 } //                                                                       Input
 
-// Meta tag: Provides information about the HTML document.
-// Attributes: charset, content, http-equiv, name, scheme
-func Meta(attributes ...Attribute) *Buffer {
-	return Element("meta", attributes...)
-} //                                                                        Meta
-
 // MetaCharset attribute applies to <meta> tags.
 func MetaCharset(locale string) *Buffer {
 	return Element("meta", Attr("charset", locale))
@@ -691,5 +682,20 @@ func Element(elementName string, attributes ...Attribute) *Buffer {
 	ws(">\r\n")
 	return &retBuf
 } //                                                                     Element
+
+// -----------------------------------------------------------------------------
+// # DEPRECATED:
+
+// Charset is DEPRECATED. Use MetaCharset() instead.
+func Charset(locale string) Attribute /*DEPRECATED*/ {
+	fmt.Println("USE OF DEPRECATED web.Charset()")
+	return Attribute{Name: "charset", Value: locale}
+} //                                                                     Charset
+
+// Meta tag is DEPRECATED. Use MetaCharset() and/or MetaViewport() instead.
+func Meta(attributes ...Attribute) *Buffer /*DEPRECATED*/ {
+	fmt.Println("USE OF DEPRECATED web.Meta()")
+	return Element("meta", attributes...)
+} //                                                                        Meta
 
 //end
