@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-04-28 18:07:08 B3E7DB                            zr-web/[session.go]
+// :v: 2020-08-01 10:31:16 D1F675                            zr-web/[session.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -13,13 +13,13 @@ import (
 	"github.com/balacode/zr"
 )
 
-// Sessions __
+// Sessions _ _
 type Sessions struct {
 	m     map[string]*Session
 	mutex sync.Mutex
 } //                                                                    Sessions
 
-// GetByCookie __
+// GetByCookie _ _
 func (ob *Sessions) GetByCookie(
 	w http.ResponseWriter,
 	req *http.Request,

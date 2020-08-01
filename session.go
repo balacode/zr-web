@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-17 16:30:46 A9DC96                            zr-web/[session.go]
+// :v: 2020-08-01 10:31:16 D2090F                            zr-web/[session.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -15,14 +15,14 @@ import (
 	"github.com/balacode/zr"
 )
 
-// Session __
+// Session _ _
 type Session struct {
 	id    string
 	m     map[string]string
 	mutex sync.Mutex
 } //                                                                     Session
 
-// ID __
+// ID _ _
 func (ob *Session) ID() string {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)
@@ -35,7 +35,7 @@ func (ob *Session) ID() string {
 	return ret
 } //                                                                          ID
 
-// GetSetting __
+// GetSetting _ _
 func (ob *Session) GetSetting(name string) string {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)
@@ -48,7 +48,7 @@ func (ob *Session) GetSetting(name string) string {
 	return ret
 } //                                                                  GetSetting
 
-// SetSetting __
+// SetSetting _ _
 func (ob *Session) SetSetting(name string, value interface{}) {
 	if ob == nil {
 		zr.Error(zr.ENilReceiver)

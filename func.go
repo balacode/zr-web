@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-11 16:38:49 6B4486                               zr-web/[func.go]
+// :v: 2020-08-01 10:31:16 086C30                               zr-web/[func.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -20,7 +20,7 @@ import (
 // -----------------------------------------------------------------------------
 // # HTTP Functions
 
-// BaseReferer __
+// BaseReferer _ _
 func BaseReferer(req *http.Request) string {
 	return strings.Trim(req.Referer(), " \a\b\f\n\r\t\v"+`/\#-0123456789`)
 } //                                                                 BaseReferer

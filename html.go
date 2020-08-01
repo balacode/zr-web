@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 10:27:20 3739DC                               zr-web/[html.go]
+// :v: 2020-08-01 10:31:16 17F57A                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -106,12 +106,12 @@ var useNthChild = true
 // -----------------------------------------------------------------------------
 // # Global Settings
 
-// UseNthChild __
+// UseNthChild _ _
 func UseNthChild() bool {
 	return useNthChild
 } //                                                                 UseNthChild
 
-// SetUseNthChild __
+// SetUseNthChild _ _
 func SetUseNthChild(val bool) {
 	useNthChild = val
 } //                                                              SetUseNthChild
