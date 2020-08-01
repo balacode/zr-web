@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-16 17:04:01 E2BEFE                               zr-web/[html.go]
+// :v: 2020-08-01 08:23:17 F904E7                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -73,6 +73,7 @@ package web
 //   Hr(attributes ...Attribute) *Buffer
 //   Input(attributes ...Attribute) *Buffer
 //   Meta(attributes ...Attribute) *Buffer
+//   MetaViewport() *Buffer
 //
 // # General Wrappers
 //   Comment(s string) *Buffer
@@ -546,6 +547,14 @@ func Input(attributes ...Attribute) *Buffer {
 func Meta(attributes ...Attribute) *Buffer {
 	return Element("meta", attributes...)
 } //                                                                        Meta
+
+// MetaViewport meta tag: enables a web page to have a responsive layout.
+func MetaViewport() *Buffer {
+	return Element("meta",
+		Attr("name", "viewport"),
+		Attr("content", "width=device-width, initial-scale=1"),
+	)
+} //                                                                MetaViewport
 
 // -----------------------------------------------------------------------------
 // # General Wrappers
