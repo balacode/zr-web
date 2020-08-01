@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 10:31:16 A33BD7                            zr-web/[context.go]
+// :v: 2020-08-01 10:32:43 22E141                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -42,8 +42,9 @@ package web
 //   Referer() string
 //   URI() string
 //
-// # Reply Method (ob *Context)
+// # Methods (ob *Context)
 //   Reply(data []byte, mediaType string)
+//   ResetPostData()
 //
 // # Debug Helper Method
 //   (ob *Context) DebugString() string {
@@ -243,7 +244,7 @@ func (ob *Context) URI() string {
 } //                                                                        URI
 
 // -----------------------------------------------------------------------------
-// # Reply Method (ob *Context)
+// # Methods (ob *Context)
 
 // Reply method sends the reply to a request.
 // Specify 'mediaType' to set 'Content-Type' in the HTTP header.
@@ -301,6 +302,15 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 	}
 	ob.w.Write(data)
 } //                                                                       Reply
+
+// ResetPostData _ _
+func (ob *Context) ResetPostData() {
+	if ob == nil {
+		zr.Error(zr.ENilReceiver)
+		return
+	}
+	ob.postData = []byte{}
+} //                                                               ResetPostData
 
 // -----------------------------------------------------------------------------
 // # Debug Helper Method
