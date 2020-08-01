@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 08:23:17 F904E7                               zr-web/[html.go]
+// :v: 2020-08-01 10:26:17 6AD430                               zr-web/[html.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -73,6 +73,7 @@ package web
 //   Hr(attributes ...Attribute) *Buffer
 //   Input(attributes ...Attribute) *Buffer
 //   Meta(attributes ...Attribute) *Buffer
+//   MetaCharset(locale string) *Buffer
 //   MetaViewport() *Buffer
 //
 // # General Wrappers
@@ -547,6 +548,11 @@ func Input(attributes ...Attribute) *Buffer {
 func Meta(attributes ...Attribute) *Buffer {
 	return Element("meta", attributes...)
 } //                                                                        Meta
+
+// MetaCharset attribute applies to <meta> tags.
+func MetaCharset(locale string) *Buffer {
+	return Element("meta", Attr("charset", locale))
+} //                                                                 MetaCharset
 
 // MetaViewport meta tag: enables a web page to have a responsive layout.
 func MetaViewport() *Buffer {
