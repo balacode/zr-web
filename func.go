@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 10:31:16 086C30                               zr-web/[func.go]
+// :v: 2020-08-03 05:50:32 A24DBD                               zr-web/[func.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -10,6 +10,7 @@ package web
 //
 // # Other Functions
 //   CompactCSS(css []byte) []byte
+//   FormatURL(url string) string
 
 import (
 	"bytes"
@@ -91,5 +92,17 @@ func CompactCSS(css []byte) []byte {
 	}
 	return ret
 } //                                                                  CompactCSS
+
+// FormatURL trims spaces, trailing '#', '/', and '?' from url.
+// It also replaces backslashes '\' with forward slashes '/'.
+// Note: this function does not perform escaping.
+func FormatURL(url string) string {
+	url = strings.TrimSpace(url)
+	if strings.Contains(url, "\\") {
+		url = strings.Replace(url, "\\", "/", -1)
+	}
+	url = strings.TrimRight(url, "#/?")
+	return url
+} //                                                                   FormatURL
 
 //end
