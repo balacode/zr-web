@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-03 05:59:47 166F3A                            zr-web/[context.go]
+// :v: 2020-08-03 06:07:03 D2F924                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -197,10 +197,13 @@ func (ctx *Context) HREF() string {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.Trim(ctx.req.URL.Path, `#/\ `)
-	if strings.Contains(ret, "\\") {
-		ret = strings.Replace(ret, "\\", "/", -1)
+	ret := ctx.req.URL.Path
+	if strings.HasPrefix(ret, "/") {
+		// preserve existing trimming of '/' from the start
+		// of the path, but this may need to be changed!
+		ret = strings.TrimLeft(ret, `/`)
 	}
+	ret = FormatURL(ret)
 	return ret
 } //                                                                        HREF
 
