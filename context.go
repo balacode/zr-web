@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-01 10:32:43 22E141                            zr-web/[context.go]
+// :v: 2020-08-03 05:54:43 E9C2D6                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -24,8 +24,8 @@ package web
 //	}
 //
 //	func mainServe(w http.ResponseWriter, req *http.Request) {
-//		ctx := web.NewContext(w, req, &ob.Sessions)
-//		ctx.Reply("<html><h1>Hello World</hq></html>", "html")
+//		context := web.NewContext(w, req, &sessions)
+//		context.Reply("<html><h1>Hello World</hq></html>", "html")
 //	}
 
 //  Context struct
@@ -34,7 +34,7 @@ package web
 //    NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 //        ) Context
 //
-// # Request Properties (ob *Context)
+// # Request Properties (ctx *Context)
 //   BaseReferer() string
 //   Method() string
 //   HREF() string
@@ -42,12 +42,12 @@ package web
 //   Referer() string
 //   URI() string
 //
-// # Methods (ob *Context)
+// # Methods (ctx *Context)
 //   Reply(data []byte, mediaType string)
 //   ResetPostData()
 //
 // # Debug Helper Method
-//   (ob *Context) DebugString() string {
+//   (ctx *Context) DebugString() string {
 
 // # Support (File Scope)
 //   readPostData(req *http.Request) []byte
@@ -166,37 +166,37 @@ func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 } //                                                                  NewContext
 
 // -----------------------------------------------------------------------------
-// # Request Properties (ob *Context)
+// # Request Properties (ctx *Context)
 
 // BaseReferer property returns the base referer path of
 // the current request. I.e. a path with '/', '\', '#'
 // and numbers stripped from the end.
-func (ob *Context) BaseReferer() string {
-	if ob == nil {
+func (ctx *Context) BaseReferer() string {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.TrimRight(ob.Referer(), " \a\b\f\n\r\t\v"+`/\#-0123456789`)
+	ret := strings.TrimRight(ctx.Referer(), " \a\b\f\n\r\t\v"+`/\#-0123456789`)
 	return ret
 } //                                                                 BaseReferer
 
 // Method returns the request's HTTP method ('GET', 'POST', 'PUT', etc)
-func (ob *Context) Method() string {
-	if ob == nil {
+func (ctx *Context) Method() string {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	return strings.ToUpper(ob.req.Method)
+	return strings.ToUpper(ctx.req.Method)
 } //                                                                      Method
 
 // HREF property returns the URL path of the current request.
 // This property does not return the query parameters.
-func (ob *Context) HREF() string {
-	if ob == nil {
+func (ctx *Context) HREF() string {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.Trim(ob.req.URL.Path, `#/\ `)
+	ret := strings.Trim(ctx.req.URL.Path, `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.Replace(ret, "\\", "/", -1)
 	}
@@ -204,25 +204,25 @@ func (ob *Context) HREF() string {
 } //                                                                        HREF
 
 // PostData property returns the POSTDATA of the current request.
-func (ob *Context) PostData() []byte {
-	if ob == nil {
+func (ctx *Context) PostData() []byte {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return []byte{}
 	}
-	if len(ob.postData) > 0 {
-		return ob.postData
+	if len(ctx.postData) > 0 {
+		return ctx.postData
 	}
-	ob.postData = readPostData(ob.req)
-	return ob.postData
+	ctx.postData = readPostData(ctx.req)
+	return ctx.postData
 } //                                                                    PostData
 
 // Referer property returns the referer path of the current request.
-func (ob *Context) Referer() string {
-	if ob == nil {
+func (ctx *Context) Referer() string {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.Trim(ob.req.Referer(), `#/\ `)
+	ret := strings.Trim(ctx.req.Referer(), `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.Replace(ret, "\\", "/", -1)
 	}
@@ -231,12 +231,12 @@ func (ob *Context) Referer() string {
 
 // URI property returns the full URI path of the current request.
 // This includes the HREF() part and any query parameters.
-func (ob *Context) URI() string {
-	if ob == nil {
+func (ctx *Context) URI() string {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return ""
 	}
-	ret := strings.Trim(ob.req.RequestURI, `#/\ `)
+	ret := strings.Trim(ctx.req.RequestURI, `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.Replace(ret, "\\", "/", -1)
 	}
@@ -244,7 +244,7 @@ func (ob *Context) URI() string {
 } //                                                                        URI
 
 // -----------------------------------------------------------------------------
-// # Methods (ob *Context)
+// # Methods (ctx *Context)
 
 // Reply method sends the reply to a request.
 // Specify 'mediaType' to set 'Content-Type' in the HTTP header.
@@ -252,15 +252,15 @@ func (ob *Context) URI() string {
 // in which case it gets converted to a proper MIME type,
 // e.g. 'application/pdf' or 'image/png'
 // Use the file extension value, e.g. "pdf"
-func (ob *Context) Reply(data []byte, mediaType string) {
+func (ctx *Context) Reply(data []byte, mediaType string) {
 	//IDEA: it would be good if Reply() accepted strings, io.Reader, etc.
-	if ob == nil {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return
 	}
 	mediaType = MediaType(mediaType)
 	if mediaType != "" {
-		ob.w.Header().Set("Content-Type", mediaType)
+		ctx.w.Header().Set("Content-Type", mediaType)
 	}
 	if mediaType == "" {
 		zr.Error(zr.EInvalidArg, "^mediaType", ":^", mediaType)
@@ -290,8 +290,8 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 				sdata + LE + "<" + strings.Repeat("-", 80) + LE
 		}
 		contextDebugPrint(
-			"REPLY:", ob.id,
-			" sid:", ob.Session.ID()[:8],
+			"REPLY:", ctx.id,
+			" sid:", ctx.Session.ID()[:8],
 			" type:", mediaType,
 			" crc:", crc,
 			" len:", len(data),
@@ -300,30 +300,30 @@ func (ob *Context) Reply(data []byte, mediaType string) {
 			LE,
 		)
 	}
-	ob.w.Write(data)
+	ctx.w.Write(data)
 } //                                                                       Reply
 
 // ResetPostData _ _
-func (ob *Context) ResetPostData() {
-	if ob == nil {
+func (ctx *Context) ResetPostData() {
+	if ctx == nil {
 		zr.Error(zr.ENilReceiver)
 		return
 	}
-	ob.postData = []byte{}
+	ctx.postData = []byte{}
 } //                                                               ResetPostData
 
 // -----------------------------------------------------------------------------
 // # Debug Helper Method
 
 // DebugString _ _
-func (ob *Context) DebugString() string {
-	postdata := string(ob.PostData())
+func (ctx *Context) DebugString() string {
+	postdata := string(ctx.PostData())
 	return fmt.Sprint(
-		"BaseReferer(): ", ob.BaseReferer(), "\n",
-		"Method(): ", ob.Method(), "\n",
-		"HREF(): ", ob.HREF(), "\n",
+		"BaseReferer(): ", ctx.BaseReferer(), "\n",
+		"Method(): ", ctx.Method(), "\n",
+		"HREF(): ", ctx.HREF(), "\n",
 		"PostData(): ", postdata, "\n",
-		"Referer(): ", ob.Referer(), "\n",
+		"Referer(): ", ctx.Referer(), "\n",
 	)
 } //                                                                 DebugString
 
