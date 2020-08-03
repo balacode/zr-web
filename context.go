@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-03 05:54:43 E9C2D6                            zr-web/[context.go]
+// :v: 2020-08-03 05:59:47 166F3A                            zr-web/[context.go]
 // -----------------------------------------------------------------------------
 
 package web
@@ -43,6 +43,7 @@ package web
 //   URI() string
 //
 // # Methods (ctx *Context)
+//   Redirect(url string)
 //   Reply(data []byte, mediaType string)
 //   ResetPostData()
 //
@@ -245,6 +246,12 @@ func (ctx *Context) URI() string {
 
 // -----------------------------------------------------------------------------
 // # Methods (ctx *Context)
+
+// Redirect redirects the client to another url using
+// HTTP redirect code 302 (temporary redirect).
+func (ctx *Context) Redirect(url string) {
+	http.Redirect(ctx.w, ctx.req, url, http.StatusFound)
+} // 																	Redirect
 
 // Reply method sends the reply to a request.
 // Specify 'mediaType' to set 'Content-Type' in the HTTP header.
