@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// ZR Library - Web Package                              zr-web/[buffer_test.go]
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-25 22:34:16 801A9A                        zr-web/[buffer_test.go]
 // -----------------------------------------------------------------------------
 
 package web

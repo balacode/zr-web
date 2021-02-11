@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// ZR Library - Web Package                          zr-web/[media_type_test.go]
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-12 17:07:24 6BDF10                    zr-web/[media_type_test.go]
 // -----------------------------------------------------------------------------
 
 package web

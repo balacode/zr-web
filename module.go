@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// ZR Library - Web Package                                   zr-web/[module.go]
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-18 17:41:25 9354FF                             zr-web/[module.go]
 // -----------------------------------------------------------------------------
 
 // Package web provides HTML generation functions
