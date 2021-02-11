@@ -39,7 +39,7 @@ func (ob *Sessions) GetByCookie(
 		id = cookie.Value
 	} else {
 		// ..if not, create new session ID and save it in a cookie
-		id = strings.Replace(zr.UUID(), "-", "", -1)
+		id = strings.ReplaceAll(zr.UUID(), "-", "")
 		http.SetCookie(w, &http.Cookie{Name: CookieName, Value: id})
 	}
 	// if session is already stored, return pointer to stored session

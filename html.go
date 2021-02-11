@@ -423,7 +423,7 @@ func COLUMNS(cols []string, class string, useNthChild bool) *Buffer {
 			}
 			if hasClass {
 				part := zr.GetPart(col, "class::", ";")
-				col = strings.Replace(col, "class::"+part+";", "", -1)
+				col = strings.ReplaceAll(col, "class::"+part+";", "")
 			}
 			ws(`"`)
 		}

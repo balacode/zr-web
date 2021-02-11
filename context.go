@@ -228,7 +228,7 @@ func (ctx *Context) Referer() string {
 	}
 	ret := strings.Trim(ctx.req.Referer(), `#/\ `)
 	if strings.Contains(ret, "\\") {
-		ret = strings.Replace(ret, "\\", "/", -1)
+		ret = strings.ReplaceAll(ret, "\\", "/")
 	}
 	return ret
 } //                                                                     Referer
@@ -242,7 +242,7 @@ func (ctx *Context) URI() string {
 	}
 	ret := strings.Trim(ctx.req.RequestURI, `#/\ `)
 	if strings.Contains(ret, "\\") {
-		ret = strings.Replace(ret, "\\", "/", -1)
+		ret = strings.ReplaceAll(ret, "\\", "/")
 	}
 	return ret
 } //                                                                        URI

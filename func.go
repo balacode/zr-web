@@ -79,16 +79,16 @@ func CompactCSS(css []byte) []byte {
 		tab   = []byte{'\t'}
 	)
 	for bytes.Contains(ret, tab) {
-		ret = bytes.Replace(ret, tab, spc, -1)
+		ret = bytes.ReplaceAll(ret, tab, spc)
 	}
 	for bytes.Contains(ret, spc2) {
-		ret = bytes.Replace(ret, spc2, spc, -1)
+		ret = bytes.ReplaceAll(ret, spc2, spc)
 	}
 	for bytes.Contains(ret, lfSpc) {
-		ret = bytes.Replace(ret, lfSpc, lf, -1)
+		ret = bytes.ReplaceAll(ret, lfSpc, lf)
 	}
 	for bytes.Contains(ret, lf2) {
-		ret = bytes.Replace(ret, lf2, lf, -1)
+		ret = bytes.ReplaceAll(ret, lf2, lf)
 	}
 	return ret
 } //                                                                  CompactCSS
@@ -99,7 +99,7 @@ func CompactCSS(css []byte) []byte {
 func FormatURL(url string) string {
 	url = strings.TrimSpace(url)
 	if strings.Contains(url, "\\") {
-		url = strings.Replace(url, "\\", "/", -1)
+		url = strings.ReplaceAll(url, "\\", "/")
 	}
 	url = strings.TrimRight(url, "#/?")
 	return url
