@@ -59,4 +59,4 @@ func Test_html_SetClass_(t *testing.T) {
 	zr.TEqual(t, SetClass(false, "AA BB CC", "AA", "BB", "CC", "X"), (""))
 } //                                                         Test_html_SetClass_
 
-//end
+// end

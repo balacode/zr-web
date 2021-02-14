@@ -115,4 +115,4 @@ func Test_buff_Buffer_WriteString_(t *testing.T) {
 	// TODO: add check for nil receiver
 } //                                               Test_buff_Buffer_WriteString_
 
-//end
+// end

@@ -698,4 +698,4 @@ func Meta(attributes ...Attribute) *Buffer /*DEPRECATED*/ {
 	return Element("meta", attributes...)
 } //                                                                        Meta
 
-//end
+// end

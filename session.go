@@ -59,4 +59,4 @@ func (ob *Session) SetSetting(name string, value interface{}) {
 	ob.mutex.Unlock()
 } //                                                                  SetSetting
 
-//end
+// end

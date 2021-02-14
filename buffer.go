@@ -126,4 +126,4 @@ func (ob *Buffer) WriteString(strings ...string) {
 	}
 } //                                                                 WriteString
 
-//end
+// end

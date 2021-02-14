@@ -1,28 +1,28 @@
-# ------------------------------------------------------------------------------
-# ZR Library - Web Package                                   zr-web/[.gitignore]
-# (c) balarabe@protonmail.com                                       License: MIT
-# ------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
+## ZR Library - Web Package                                  zr-web/[.gitignore]
+## (c) balarabe@protonmail.com                                      License: MIT
+## -----------------------------------------------------------------------------
 
-# log files and scripts
+## log files and scripts
 *.bat
 *.log
 *.sh
 
-# drafts and temp files
+## drafts and temp files
 *`*
 _*
 
-# Binaries for programs and plugins
+## binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
 
-# Test binary, build with `go test -c`
+## test binary, build with `go test -c`
 *.test
 
-# Output of the go coverage tool, specifically when used with LiteIDE
+## output of the Go coverage tool, specifically when used with LiteIDE
 *.out
 
-# end
+## end

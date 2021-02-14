@@ -57,4 +57,4 @@ func (ob *Sessions) GetByCookie(
 	return ptr
 } //                                                                 GetByCookie
 
-//end
+// end
