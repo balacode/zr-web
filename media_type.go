@@ -99,6 +99,7 @@ var MediaTypes = []struct { // TODO: use upper case
 	{"lhs", "text/x-literate-haskell"},
 	{"ltx", "text/x-tex"},
 	{"manifest", "text/cache-manifest"},
+	{"md", "text/x-markdown"},
 	{"mml", "text/mathml"},
 	{"moc", "text/x-moc"},
 	{"p", "text/x-pascal"},
