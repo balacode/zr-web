@@ -24,10 +24,6 @@ func (ob *Sessions) GetByCookie(
 	w http.ResponseWriter,
 	req *http.Request,
 ) *Session {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return nil
-	}
 	ob.mutex.Lock()
 	defer ob.mutex.Unlock()
 	//

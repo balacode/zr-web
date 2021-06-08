@@ -173,30 +173,18 @@ func NewContext(w http.ResponseWriter, req *http.Request, sess *Sessions,
 // the current request. I.e. a path with '/', '\', '#'
 // and numbers stripped from the end.
 func (ctx *Context) BaseReferer() string {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	ret := strings.TrimRight(ctx.Referer(), " \a\b\f\n\r\t\v"+`/\#-0123456789`)
 	return ret
 } //                                                                 BaseReferer
 
 // Method returns the request's HTTP method ('GET', 'POST', 'PUT', etc)
 func (ctx *Context) Method() string {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	return strings.ToUpper(ctx.req.Method)
 } //                                                                      Method
 
 // HREF property returns the URL path of the current request.
 // This property does not return the query parameters.
 func (ctx *Context) HREF() string {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	ret := ctx.req.URL.Path
 	if strings.HasPrefix(ret, "/") {
 		// preserve existing trimming of '/' from the start
@@ -209,10 +197,6 @@ func (ctx *Context) HREF() string {
 
 // PostData property returns the POSTDATA of the current request.
 func (ctx *Context) PostData() []byte {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return []byte{}
-	}
 	if len(ctx.postData) > 0 {
 		return ctx.postData
 	}
@@ -222,10 +206,6 @@ func (ctx *Context) PostData() []byte {
 
 // Referer property returns the referer path of the current request.
 func (ctx *Context) Referer() string {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	ret := strings.Trim(ctx.req.Referer(), `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.ReplaceAll(ret, "\\", "/")
@@ -236,10 +216,6 @@ func (ctx *Context) Referer() string {
 // URI property returns the full URI path of the current request.
 // This includes the HREF() part and any query parameters.
 func (ctx *Context) URI() string {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	ret := strings.Trim(ctx.req.RequestURI, `#/\ `)
 	if strings.Contains(ret, "\\") {
 		ret = strings.ReplaceAll(ret, "\\", "/")
@@ -264,10 +240,6 @@ func (ctx *Context) Redirect(url string) {
 // Use the file extension value, e.g. "pdf"
 func (ctx *Context) Reply(data []byte, mediaType string) {
 	//IDEA: it would be good if Reply() accepted strings, io.Reader, etc.
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	mediaType = MediaType(mediaType)
 	if mediaType != "" {
 		ctx.w.Header().Set("Content-Type", mediaType)
@@ -315,10 +287,6 @@ func (ctx *Context) Reply(data []byte, mediaType string) {
 
 // ResetPostData _ _
 func (ctx *Context) ResetPostData() {
-	if ctx == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	ctx.postData = []byte{}
 } //                                                               ResetPostData
 

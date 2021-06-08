@@ -24,10 +24,6 @@ type Session struct {
 
 // ID _ _
 func (ob *Session) ID() string {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return "" // error val
-	}
 	var ret string
 	ob.mutex.Lock()
 	ret = ob.id
@@ -37,10 +33,6 @@ func (ob *Session) ID() string {
 
 // GetSetting _ _
 func (ob *Session) GetSetting(name string) string {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return "" // error val
-	}
 	var ret string
 	ob.mutex.Lock()
 	ret = ob.m[name]
@@ -50,10 +42,6 @@ func (ob *Session) GetSetting(name string) string {
 
 // SetSetting _ _
 func (ob *Session) SetSetting(name string, value interface{}) {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	ob.mutex.Lock()
 	ob.m[name] = zr.String(value)
 	ob.mutex.Unlock()

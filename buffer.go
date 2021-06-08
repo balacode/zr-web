@@ -21,8 +21,6 @@ package web
 
 import (
 	"bytes"
-
-	"github.com/balacode/zr"
 )
 
 // -----------------------------------------------------------------------------
@@ -55,48 +53,28 @@ func NewBuffer(size int) Buffer {
 
 // Bytes returns the contents of the buffer as an array of bytes.
 func (ob *Buffer) Bytes() []byte {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return []byte{}
-	}
 	return ob.html.Bytes()
 } //                                                                       Bytes
 
 // Len returns the length of the buffer.
 func (ob *Buffer) Len() int {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return 0
-	}
 	return ob.html.Len()
 } //                                                                         Len
 
 // Reset makes the buffer empty, but retains
 // allocated storage for future reuse.
 func (ob *Buffer) Reset() {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	ob.html.Reset()
 } //                                                                       Reset
 
 // String returns the contents of the buffer as a string
 // and implements the fmt.Stringer interface.
 func (ob *Buffer) String() string {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return ""
-	}
 	return ob.html.String()
 } //                                                                      String
 
 // Write writes 'html' to the buffer.
 func (ob *Buffer) Write(html ...*Buffer) {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	for _, iter := range html {
 		if iter != nil && iter.Len() > 0 {
 			ob.html.Write(iter.Bytes())
@@ -106,10 +84,6 @@ func (ob *Buffer) Write(html ...*Buffer) {
 
 // WriteBytes writes a string to the buffer.
 func (ob *Buffer) WriteBytes(arrays ...[]byte) {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	for _, b := range arrays {
 		ob.html.Write(b)
 	}
@@ -117,10 +91,6 @@ func (ob *Buffer) WriteBytes(arrays ...[]byte) {
 
 // WriteString writes a string to the buffer.
 func (ob *Buffer) WriteString(strings ...string) {
-	if ob == nil {
-		zr.Error(zr.ENilReceiver)
-		return
-	}
 	for _, s := range strings {
 		ob.html.WriteString(s)
 	}
